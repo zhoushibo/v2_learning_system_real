@@ -1,4 +1,4 @@
-"""
+﻿"""
 V2 Learning System - Learning Engine
 Real LLM integration with fallback mechanisms
 """
@@ -119,11 +119,11 @@ class LearningEngine:
                 save_result = await kb.save_learning_result(topic, learning_data)
                 
                 if save_result["success"]:
-                    print(f"\n💾 {save_result['message']}")
+                    print(f"\n[SAVE] {save_result['message']}")
                 else:
-                    print(f"\n⚠️ 保存到知识库失败：{save_result.get('error', '未知错误')}")
+                    print(f"\n[WARN] 保存到知识库失败：{save_result.get('error', '未知错误')}")
             except Exception as e:
-                print(f"\n⚠️ 知识库集成未启用或出错：{e}")
+                print(f"\n[WARN] 知识库集成未启用或出错：{e}")
         
         return learning_data
     
@@ -167,3 +167,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+

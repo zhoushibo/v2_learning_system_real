@@ -67,10 +67,10 @@ class KnowledgeBaseIntegration:
             self.KnowledgeSearchFTS = KnowledgeSearchFTS
             
             self.initialized = True
-            logger.info(f"✅ 知识库集成初始化成功：{self.kb_path}")
+            logger.info(f"[OK] 知识库集成初始化成功：{self.kb_path}")
             
         except ImportError as e:
-            logger.error(f"❌ 导入知识库模块失败：{e}")
+            logger.error(f"[FAIL] 导入知识库模块失败：{e}")
             raise RuntimeError(f"无法导入知识库模块：{e}")
     
     async def save_learning_result(
@@ -136,20 +136,20 @@ class KnowledgeBaseIntegration:
                 "chroma_count": chroma_count,
                 "fts_count": fts_count,
                 "timestamp": datetime.now().isoformat(),
-                "message": f"✅ 学习结果已保存到知识库：{chroma_count} 条 ChromaDB, {fts_count} 条 FTS5"
+                "message": f"[OK] 学习结果已保存到知识库：{chroma_count} 条 ChromaDB, {fts_count} 条 FTS5"
             }
             
             logger.info(result["message"])
             return result
             
         except Exception as e:
-            logger.error(f"❌ 保存学习结果失败：{e}")
+            logger.error(f"[FAIL] 保存学习结果失败：{e}")
             return {
                 "success": False,
                 "topic": topic,
                 "error": str(e),
                 "timestamp": datetime.now().isoformat(),
-                "message": f"❌ 保存失败：{str(e)}"
+                "message": f"[FAIL] 保存失败：{str(e)}"
             }
     
     def _prepare_knowledge_items(
@@ -257,30 +257,30 @@ async def main():
     ]
     
     # 3. 保存到知识库
-    print(f"\n📚 保存学习结果：{topic}")
+    print(f"\n[BOOK] 保存学习结果：{topic}")
     result = await kb.save_learning_result(topic, learning_data)
     
     if result["success"]:
-        print(f"\n✅ {result['message']}")
+        print(f"\n[OK] {result['message']}")
     else:
-        print(f"\n❌ {result['message']}")
+        print(f"\n[FAIL] {result['message']}")
     
     # 4. 搜索测试
-    print(f"\n🔍 搜索 'Python'...")
+    print(f"\n[SEARCH] 搜索 'Python'...")
     search_results = kb.search_knowledge("Python", limit=3)
     
     if search_results:
-        print(f"✅ 找到 {len(search_results)} 条结果")
+        print(f"[OK] 找到 {len(search_results)} 条结果")
         for i, res in enumerate(search_results, 1):
             title = res.get("title", "")
             content = res.get("content", "")[:100]
             print(f"\n{i}. {title}")
             print(f"   {content}...")
     else:
-        print("❌ 未找到结果")
+        print("[FAIL] 未找到结果")
     
     print("\n" + "=" * 80)
-    print("✅ 测试完成")
+    print("[OK] 测试完成")
     print("=" * 80)
 
 
