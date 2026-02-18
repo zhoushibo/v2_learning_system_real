@@ -1,0 +1,70 @@
+{
+  "name": "example_plugin",
+  "version": "1.0.0",
+  "description": "Example plugin demonstrating the plugin system API",
+  "author": "Claw",
+  "entry_point": "example_plugin:ExamplePlugin",
+  "tools": [
+    {
+      "name": "hello_world",
+      "description": "Say hello to someone",
+      "entry_point": "example_plugin:HelloWorldTool",
+      "parameters": [
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "default": "World",
+          "description": "Name to greet"
+        }
+      ],
+      "permissions": [],
+      "category": "example"
+    },
+    {
+      "name": "calculator",
+      "description": "Perform basic arithmetic operations",
+      "entry_point": "example_plugin:CalculatorTool",
+      "parameters": [
+        {
+          "name": "a",
+          "type": "int",
+          "required": true,
+          "description": "First operand"
+        },
+        {
+          "name": "b",
+          "type": "int",
+          "required": true,
+          "description": "Second operand"
+        },
+        {
+          "name": "operation",
+          "type": "string",
+          "required": false,
+          "default": "add",
+          "description": "Operation (add, subtract, multiply, divide)"
+        }
+      ],
+      "permissions": [],
+      "category": "math"
+    },
+    {
+      "name": "reverse_string",
+      "description": "Reverse a given string",
+      "entry_point": "example_plugin:ReverseStringTool",
+      "parameters": [
+        {
+          "name": "text",
+          "type": "string",
+          "required": true,
+          "description": "Text to reverse"
+        }
+      ],
+      "permissions": [],
+      "category": "example"
+    }
+  ],
+  "permissions": [],
+  "dependencies": []
+}

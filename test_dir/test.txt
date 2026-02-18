@@ -1,0 +1,2 @@
+Hello from V2 Worker!
+这是一行测试文字。

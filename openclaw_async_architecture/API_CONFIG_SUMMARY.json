@@ -1,0 +1,97 @@
+{
+  "api_configs": {
+    "nvidia1": {
+      "name": "英伟达1 (主账户)",
+      "provider": "nvidia",
+      "url": "https://integrate.api.nvidia.com/v1/chat/completions",
+      "api_key": "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",
+      "model": "z-ai/glm4.7",
+      "context_window": 128000,
+      "max_rpm": 40,
+      "max_concurrent": 5,
+      "enable_thinking": true,
+      "avg_latency": 7.17,
+      "tier": "Tier1",
+      "note": "思考模式 enabled"
+    },
+    "nvidia2": {
+      "name": "英伟达2 (备用)",
+      "provider": "nvidia",
+      "url": "https://integrate.api.nvidia.com/v1/chat/completions",
+      "api_key": "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",
+      "model": "z-ai/glm4.7",
+      "context_window": 128000,
+      "max_rpm": 40,
+      "max_concurrent": 5,
+      "enable_thinking": true,
+      "avg_latency": 2.68,
+      "tier": "Tier1",
+      "note": "思考模式 enabled"
+    },
+    "hunyuan": {
+      "name": "混元 (腾讯)",
+      "provider": "tencent",
+      "url": "https://api.hunyuan.cloud.tencent.com/v1/chat/completions",
+      "api_key": "sk-7xGaNZwkW0CLZNeT8kZrJv2hiHpU47wzS8XVhOagKKjLyb2i",
+      "model": "hunyuan-lite",
+      "context_window": 262144,
+      "max_rpm": "unlimited",
+      "max_concurrent": 5,
+      "enable_thinking": false,
+      "avg_latency": 1.20,
+      "tier": "Tier2",
+      "note": "256k上下文，无RPM限制，最快"
+    },
+    "siliconflow": {
+      "name": "SiliconFlow (embeddings)",
+      "provider": "siliconflow",
+      "url": "https://api.siliconflow.cn/v1/embeddings",
+      "api_key": "sk-kvqpfofevcxloxexrrjovsjzpnwsvhpwrbxkwjydwbjyufjf",
+      "model": "BAAI/bge-large-zh-v1.5",
+      "max_rpm": 5,
+      "daily_tokens": 500000,
+      "avg_latency": 0.10,
+      "type": "embeddings",
+      "note": "仅用于embeddings"
+    }
+  },
+  "performance_ranking": {
+    "fastest": "hunyuan",
+    "fastest_avg_latency": 1.20,
+    "second_fastest": "nvidia2",
+    "slowest": "nvidia1",
+    "slowest_avg_latency": 7.17,
+    "speed_ratio": 6.0
+  },
+  "recommendations": {
+    "default_model": "hunyuan",
+    "complex_reasoning": "nvidia1",
+    "fast_response": "hunyuan",
+    "large_context": "hunyuan",
+    "embeddings": "siliconflow",
+    "load_balancing": {
+      "hunyuan": 0.7,
+      "nvidia1": 0.15,
+      "nvidia2": 0.15
+    }
+  },
+  "test_results": {
+    "test_time": "2026-02-16 00:48-00:50",
+    "test1_simple": {
+      "winner": "hunyuan",
+      "latency": 1.18,
+      "tokens": 36
+    },
+    "test2_complex": {
+      "winner": "hunyuan",
+      "latency": 1.22,
+      "tokens": 57
+    },
+    "test3_embeddings": {
+      "provider": "siliconflow",
+      "latency": 0.10,
+      "dimensions": 1024
+    }
+  },
+  "updated_at": "2026-02-16T00:50:00+08:00"
+}

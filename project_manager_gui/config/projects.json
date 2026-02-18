@@ -1,0 +1,50 @@
+{
+  "projects": [
+    {
+      "id": "v2_mvp",
+      "name": "V2 MVP",
+      "type": "async_architecture",
+      "path": "C:\\Users\\10952\\.openclaw\\workspace\\openclaw_async_architecture\\mvp",
+      "launcher": "launcher.py",
+      "start_gateway_cmd": "python launcher.py gateway",
+      "start_worker_cmd": "python launcher.py worker",
+      "description": "OpenClaw V2异步架构MVP，Gateway+Worker多模型智能路由",
+      "components": [
+        {
+          "id": "gateway",
+          "name": "Gateway",
+          "command": "python launcher.py gateway",
+          "working_dir": "C:\\Users\\10952\\.openclaw\\workspace\\openclaw_async_architecture\\mvp",
+          "port": 8000,
+          "health_check": "http://127.0.0.1:8000/health"
+        },
+        {
+          "id": "worker",
+          "name": "Worker",
+          "command": "python launcher.py worker",
+          "working_dir": "C:\\Users\\10952\\.openclaw\\workspace\\openclaw_async_architecture\\mvp",
+          "health_check": null
+        }
+      ]
+    },
+    {
+      "id": "dingtalk_agent",
+      "name": "钉钉AI Agent",
+      "type": "agent",
+      "path": "D:\\\\.openclaw\\workspace\\claw_agent_demo",
+      "launcher": "demo/server.py",
+      "start_cmd": "python demo/server.py",
+      "description": "钉钉AI Agent系统，webhook接收和处理钉钉消息",
+      "components": [
+        {
+          "id": "server",
+          "name": "Flask Server",
+          "command": "python demo/server.py",
+          "working_dir": "D:\\\\.openclaw\\workspace\\claw_agent_demo",
+          "port": 3000,
+          "health_check": "http://127.0.0.1:3000/health"
+        }
+      ]
+    }
+  ]
+}

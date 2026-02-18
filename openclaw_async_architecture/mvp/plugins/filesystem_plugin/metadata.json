@@ -1,0 +1,77 @@
+{
+  "name": "filesystem_plugin",
+  "version": "1.0.0",
+  "description": "文件系统工具插件（异步I/O优化）",
+  "author": "Claw",
+  "entry_point": "filesystem_plugin:FileSystemPlugin",
+  "tools": [
+    {
+      "name": "read_file",
+      "description": "读取文件内容（异步I/O）",
+      "entry_point": "filesystem_plugin:ReadFileTool",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "required": true,
+          "description": "文件路径"
+        }
+      ],
+      "permissions": ["read"],
+      "category": "filesystem"
+    },
+    {
+      "name": "write_file",
+      "description": "写入文件内容（异步I/O）",
+      "entry_point": "filesystem_plugin:WriteFileTool",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "required": true,
+          "description": "文件路径"
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "required": true,
+          "description": "文件内容"
+        }
+      ],
+      "permissions": ["write"],
+      "category": "filesystem"
+    },
+    {
+      "name": "list_directory",
+      "description": "列出目录内容（异步I/O）",
+      "entry_point": "filesystem_plugin:ListDirectoryTool",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "required": true,
+          "description": "目录路径"
+        }
+      ],
+      "permissions": ["read"],
+      "category": "filesystem"
+    },
+    {
+      "name": "create_directory",
+      "description": "创建目录（递归）",
+      "entry_point": "filesystem_plugin:CreateDirectoryTool",
+      "parameters": [
+        {
+          "name": "path",
+          "type": "string",
+          "required": true,
+          "description": "目录路径"
+        }
+      ],
+      "permissions": ["write"],
+      "category": "filesystem"
+    }
+  ],
+  "permissions": ["read", "write"],
+  "dependencies": []
+}
